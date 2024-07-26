@@ -22,8 +22,33 @@ async def on_ready():
     print(f"{line_1}\n{line_2}")
 
 
-def start_bot():
-    bot.run(TOKEN)
+# Register commands to load/unload cogs
+@bot.slash_command()
+async def load(ctx, cog: str):
+    # check if file exists
+    if not os.path.exists(f"./cogs/{cog}.py"):
+        await ctx.response.send_message(f"Cog {cog} does not exist")
+        return
+
+    bot.load_extension(f"cogs.{cog}")
+    await ctx.response.send_message(f"Loaded cog {cog}")
 
 
-start_bot()
+@bot.slash_command()
+async def unload(ctx, cog: str):
+    # check if cog is loaded
+    if cog not in bot.extensions:
+        await ctx.response.send_message(f"Cog {cog} is not loaded")
+        return
+
+    bot.unload_extension(f"cogs.{cog}")
+    await ctx.response.send_message(f"Unloaded cog {cog}")
+
+
+# Get all cogs in the cogs folder, and load them
+for filename in os.listdir("./cogs"):
+    if filename.endswith(".py"):
+        bot.load_extension(f"cogs.{filename[:-3]}")
+
+# start bot
+bot.run(TOKEN)
