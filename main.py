@@ -7,6 +7,7 @@ import os
 
 # Disnake
 import disnake
+from disnake.embeds import Embed
 from disnake.ext import commands
 
 # Get bot ready
@@ -24,25 +25,38 @@ async def on_ready():
 
 # Register commands to load/unload cogs
 @bot.slash_command()
+@commands.has_permissions(administrator=True)
+async def administration(ctx):
+    pass
+
+
+# Register commands to load/unload cogs
+@administration.sub_command()
 async def load(ctx, cog: str):
-    # check if file exists
-    if not os.path.exists(f"./cogs/{cog}.py"):
+    try:
+        bot.load_extension(f"cogs.{cog}")
+        await ctx.response.send_message(f"Loaded cog {cog}")
+    except commands.ExtensionAlreadyLoaded:
+        await ctx.response.send_message(f"Cog {cog} is already loaded")
+    except commands.ExtensionNotFound:
         await ctx.response.send_message(f"Cog {cog} does not exist")
-        return
-
-    bot.load_extension(f"cogs.{cog}")
-    await ctx.response.send_message(f"Loaded cog {cog}")
 
 
-@bot.slash_command()
+@administration.sub_command()
 async def unload(ctx, cog: str):
-    # check if cog is loaded
-    if cog not in bot.extensions:
+    try:
+        bot.unload_extension(f"cogs.{cog}")
+        await ctx.response.send_message(f"Unloaded cog {cog}")
+    except:
         await ctx.response.send_message(f"Cog {cog} is not loaded")
-        return
 
-    bot.unload_extension(f"cogs.{cog}")
-    await ctx.response.send_message(f"Unloaded cog {cog}")
+
+# Handle errors
+@bot.event
+async def on_slash_command_error(ctx, error):
+    # TODO: Make title random
+    embed = Embed(title="Error", description=error)
+    await ctx.response.send_message(embed=embed)
 
 
 # Get all cogs in the cogs folder, and load them
