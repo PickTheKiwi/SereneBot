@@ -33,22 +33,14 @@ async def administration(ctx):
 # Register commands to load/unload cogs
 @administration.sub_command()
 async def load(ctx, cog: str):
-    try:
-        bot.load_extension(f"cogs.{cog}")
-        await ctx.response.send_message(f"Loaded cog {cog}")
-    except commands.ExtensionAlreadyLoaded:
-        await ctx.response.send_message(f"Cog {cog} is already loaded")
-    except commands.ExtensionNotFound:
-        await ctx.response.send_message(f"Cog {cog} does not exist")
+    bot.load_extension(f"cogs.{cog}")
+    await ctx.response.send_message(f"Loaded cog {cog}")
 
 
 @administration.sub_command()
 async def unload(ctx, cog: str):
-    try:
-        bot.unload_extension(f"cogs.{cog}")
-        await ctx.response.send_message(f"Unloaded cog {cog}")
-    except:
-        await ctx.response.send_message(f"Cog {cog} is not loaded")
+    bot.unload_extension(f"cogs.{cog}")
+    await ctx.response.send_message(f"Unloaded cog {cog}")
 
 
 # Handle errors
