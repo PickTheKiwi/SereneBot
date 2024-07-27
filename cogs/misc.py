@@ -17,3 +17,8 @@ class Misc(commands.Cog):
 def setup(bot):
     if ENABLED:
         bot.add_cog(Misc(bot))
+
+
+def teardown(bot):
+    bot.remove_cog("misc")
+    print("removing cog")
