@@ -10,13 +10,14 @@ class Misc(commands.Cog):
         print("Misc cog loaded")
 
     @commands.slash_command()
-    async def ping(self, inter: disnake.ApplicationCommandInteraction):
-        await inter.response.send_message(f"{round(self.bot.latency * 1000)}ms")
+    async def ping(self, interaction):
+        await interaction.response.send_message(f"{round(self.bot.latency * 1000)}ms")
 
 
 def setup(bot):
     if ENABLED:
         bot.add_cog(Misc(bot))
+        print("adding cog")
 
 
 def teardown(bot):
