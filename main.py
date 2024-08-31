@@ -41,6 +41,12 @@ async def unload(ctx, cog: str):
     await ctx.response.send_message(f"Unloaded cog {cog}")
 
 
+@administration.sub_command()
+async def reload(ctx, cog: str):
+    bot.reload_extension(f"cogs.{cog}")
+    await ctx.response.send_message(f"Attempted to reload cog {cog}")
+
+
 # Handle errors
 @bot.event
 async def on_slash_command_error(ctx, error):
