@@ -6,7 +6,6 @@ if __name__ != "__main__":
 import os
 
 # Disnake
-import disnake
 from disnake.embeds import Embed
 from disnake.ext import commands
 
@@ -30,7 +29,6 @@ async def administration(ctx):
     pass
 
 
-# Register commands to load/unload cogs
 @administration.sub_command()
 async def load(ctx, cog: str):
     bot.load_extension(f"cogs.{cog}")
@@ -41,6 +39,12 @@ async def load(ctx, cog: str):
 async def unload(ctx, cog: str):
     bot.unload_extension(f"cogs.{cog}")
     await ctx.response.send_message(f"Unloaded cog {cog}")
+
+
+@administration.sub_command()
+async def reload(ctx, cog: str):
+    bot.reload_extension(f"cogs.{cog}")
+    await ctx.response.send_message(f"Attempted to reload cog {cog}")
 
 
 # Handle errors
