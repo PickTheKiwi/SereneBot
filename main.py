@@ -6,7 +6,6 @@ if __name__ != "__main__":
 import os
 
 # Disnake
-import disnake
 from disnake.embeds import Embed
 from disnake.ext import commands
 
@@ -30,7 +29,6 @@ async def administration(ctx):
     pass
 
 
-# Register commands to load/unload cogs
 @administration.sub_command()
 async def load(ctx, cog: str):
     bot.load_extension(f"cogs.{cog}")
