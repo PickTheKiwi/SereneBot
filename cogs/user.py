@@ -1,9 +1,10 @@
 import disnake
 from disnake.embeds import Embed
 from disnake.ext import commands
-from typing import Union
 
-ENABLED = True
+import enabled_cogs
+
+ENABLED = enabled_cogs.user
 
 
 class User(commands.Cog):
@@ -21,7 +22,7 @@ class User(commands.Cog):
             user = ctx.author
 
         embed = Embed(
-            description=f"Some random text to add",
+            description="Some information on the user",
             color=888888,
         )
 
