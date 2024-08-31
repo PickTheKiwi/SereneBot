@@ -117,35 +117,3 @@ CREATE TABLE fish (
   item_id int NOT NULL,
   FOREIGN KEY (item_id) REFERENCES item(item_id)
 );
-
--- ALTER TABLE infractions ADD FOREIGN KEY (user_id) REFERENCES user (user_id);
-
--- ALTER TABLE infractions ADD FOREIGN KEY (inf_type_id) REFERENCES infraction_type (inf_type_id);
-
--- ALTER TABLE reputation ADD FOREIGN KEY (user_id) REFERENCES user (user_id);
-
--- ALTER TABLE user_boost ADD FOREIGN KEY (boost_id) REFERENCES boost (boost_id);
-
--- ALTER TABLE user_boost ADD FOREIGN KEY (user_id) REFERENCES user (user_id);
-
--- ALTER TABLE boost ADD FOREIGN KEY (boost_type_id) REFERENCES boost_type (boost_type_id);
-
--- ALTER TABLE boost ADD FOREIGN KEY (boost_affect_id) REFERENCES boost_affect (boost_affect_id);
-
--- ALTER TABLE boost ADD FOREIGN KEY (user_id) REFERENCES user (user_id);
-
--- ALTER TABLE inventory ADD FOREIGN KEY (user_id) REFERENCES user (user_id);
-
--- ALTER TABLE inventory ADD FOREIGN KEY (item_id) REFERENCES item (item_id);
-
--- ALTER TABLE item ADD FOREIGN KEY (item_category_id) REFERENCES item_category (item_category_id);
-
--- ALTER TABLE user_achievement ADD FOREIGN KEY (user_id) REFERENCES user (user_id);
-
--- ALTER TABLE user_achievement ADD FOREIGN KEY (achievement_id) REFERENCES achievement (achievement_id);
-
--- ALTER TABLE active_activity ADD FOREIGN KEY (activity_id) REFERENCES activity (activity_id);
-
--- ALTER TABLE active_activity ADD FOREIGN KEY (user_id) REFERENCES user (user_id);
-
--- ALTER TABLE fish ADD FOREIGN KEY (item_id) REFERENCES item (item_id);
