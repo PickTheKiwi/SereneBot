@@ -2,9 +2,12 @@ import disnake
 from disnake.embeds import Embed
 from disnake.ext import commands
 
-import enabled_cogs
+import configparser
 
-ENABLED = enabled_cogs.user
+config = configparser.ConfigParser()
+config.read("config.ini")
+
+ENABLED = config.getboolean("Cogs", "user")
 
 
 class User(commands.Cog):
@@ -35,6 +38,8 @@ def setup(bot):
     if ENABLED:
         bot.add_cog(User(bot))
         print("adding cog")
+    else:
+        print("not adding cog, not currently enabled")
 
 
 def teardown(bot):
