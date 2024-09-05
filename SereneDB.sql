@@ -71,7 +71,7 @@ CREATE TABLE item_category (
 CREATE TABLE item (
   item_id int NOT NULL PRIMARY KEY,
   item_name varchar(32) NOT NULL,
-  item_category_id int NOT NULL
+  item_category_id int NOT NULL,
   sell_worth int,
   FOREIGN KEY (item_category_id) REFERENCES item_category(item_category_id)
 );
@@ -100,7 +100,7 @@ CREATE TABLE user_achievement (
 
 CREATE TABLE activity (
   activity_id int NOT NULL PRIMARY KEY,
-  activity_name varchar(32) NOT NULL,
+  activity_name varchar(32) NOT NULL
 );
 
 CREATE TABLE active_activity (
