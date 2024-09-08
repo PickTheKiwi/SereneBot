@@ -13,7 +13,7 @@ CREATE TABLE user_flags (
 );
 
 CREATE TABLE user_deletion_queue (
-  user_del_id bigint NOT NULL PRIMARY KEY,
+  user_del_id int NOT NULL PRIMARY KEY,
   user_id bigint NOT NULL,
   -- Date the user should be deleted, unless their ranking above the threshold
   user_del_date date NOT NULL,
