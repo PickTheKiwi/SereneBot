@@ -132,3 +132,8 @@ CREATE TABLE fish (
   item_id int NOT NULL,
   FOREIGN KEY (item_id) REFERENCES item(item_id)
 );
+
+-- Starting data for DB
+
+-- User Flags
+INSERT INTO user_flags (flag_id, flag_name) VALUES (1, 'Normal'), (2, 'Suspended'), (3, 'Scheduled For Deletion');
