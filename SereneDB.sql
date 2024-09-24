@@ -2,7 +2,22 @@ CREATE TABLE user (
   user_id bigint NOT NULL PRIMARY KEY,
   user_xp bigint,
   user_balance bigint,
+  user_flag int,
   total_activity_complete int
+);
+
+CREATE TABLE user_flags (
+  flag_id int NOT NULL PRIMARY KEY,
+  -- If a user has a flag, certain data will be hidden from certain areas (such as the leaderboard)
+  flag_name varchar(32) NOT NULL
+);
+
+CREATE TABLE user_deletion_queue (
+  user_del_id int NOT NULL PRIMARY KEY,
+  user_id bigint NOT NULL,
+  -- Date the user should be deleted, unless their ranking above the threshold
+  user_del_date date NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE ranking_levels (
@@ -117,3 +132,8 @@ CREATE TABLE fish (
   item_id int NOT NULL,
   FOREIGN KEY (item_id) REFERENCES item(item_id)
 );
+
+-- Starting data for DB
+
+-- User Flags
+INSERT INTO user_flags (flag_id, flag_name) VALUES (1, 'Normal'), (2, 'Suspended'), (3, 'Scheduled For Deletion');
