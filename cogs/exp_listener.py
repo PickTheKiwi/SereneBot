@@ -62,6 +62,9 @@ class ExpListener(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, ctx):
+        """
+        If a user sends a message, add XP to the user in the database
+        """
         if ctx.author.id != self.bot.user.id:
             # TODO: Give XP to user
             pass
